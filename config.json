@@ -1,0 +1,61 @@
+{
+    "components": [
+      {
+        "name": "frontend",
+        "git_url": "https://gitlab.example.com/ekatra/frontend.git",
+        "ip": "192.168.1.10",
+        "dns": "frontend.ekatra.local",
+        "username": "fe_user",
+        "password": "fe_password",
+        "status": "active",
+        "network": "frontend_net"
+      },
+      {
+        "name": "backend",
+        "git_url": "https://gitlab.example.com/ekatra/backend.git",
+        "ip": "192.168.1.20",
+        "dns": "backend.ekatra.local",
+        "username": "be_user",
+        "password": "be_password",
+        "status": "active",
+        "network": "backend_net"
+      },
+      {
+        "name": "database",
+        "git_url": "https://gitlab.example.com/ekatra/database.git",
+        "ip": "192.168.1.30",
+        "dns": "db.ekatra.local",
+        "username": "db_user",
+        "password": "db_password",
+        "status": "standby",
+        "network": "backend_net"
+      }
+    ],
+    "networks": [
+      {
+        "name": "frontend_net",
+        "subnet": "192.168.1.0/24",
+        "gateway": "192.168.1.1"
+      },
+      {
+        "name": "backend_net",
+        "subnet": "192.168.2.0/24",
+        "gateway": "192.168.2.1"
+      }
+    ],
+    "host_interaction": {
+      "allowed_components": ["frontend", "backend"],
+      "blocked_components": ["database"]
+    },
+    "component_interactions": [
+      {
+        "from": "frontend",
+        "to": ["backend"]
+      },
+      {
+        "from": "backend",
+        "to": ["database"]
+      }
+    ]
+  }
+  
