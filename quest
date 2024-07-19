@@ -21,3 +21,86 @@
     2.1 Зайти в /mnt/poligon
     2.2 Запустить скрипт create_ekatra_test.sh из папки /mnt/poligon, когда будут все компоненты известны.
     2.3 Получить рекомендации по запуску компонент и связывания их: (адреса, имена и пр.)
+
+
+По документу README.md в корне sunpp_docs:
+    1. Prerequisites (Предварительные требования)
+        - make
+        - docker
+        - python>=3.6
+        - docker-compose
+        - coolie                                  - ? Где взять ?
+
+    2. Install docker-local-persist-volume-plugin
+       curl -fsSL https://raw.githubusercontent.com/CWSpear/local-persist/master/scripts/install.sh | sudo bash        
+                                                  - ? Нет адреса ?
+
+    В составе входят инсталляции следующие пакеты:
+      1 weave;
+      2 docker;
+      3 site.
+
+    Установка 
+      bash <(curl -s http://sdn.dc.cns.atom/install/sites/znpp/net-install.sh) setup
+
+
+    или
+
+    3. Install docker plugin weave
+       https://www.weave.works/docs/net/latest/install/installing-weave/  - ? Site Not Found ?
+
+       Weave - это сетевое решение для контейнеров Docker.
+               Оно создает виртуальную сеть, которая соединяет контейнеры Docker на нескольких хостах,
+               позволяя им беспрепятственно общаться, как если бы они находились в одной сети.
+               Weave предоставляет оверлейную сеть, 
+               позволяющую контейнерам находить друг друга и взаимодействовать,
+               используя их DNS-имена, независимо от того, на каком хосте они запущены.
+               Этот инструмент особенно полезен для создания распределенных приложений
+               и микросервисных архитектур в контейнеризированных средах.  
+
+      Где лежит:  https://github.com/weaveworks/weave 
+
+      Через apt:  sudo apt-get update
+                  sudo apt-get install weave
+
+      Если пакет не найден в стандартных репозиториях,добавить репозиторий Weaveworks:
+                  sudo curl -L git.io/weave -o /usr/local/bin/weave
+                  sudo chmod a+x /usr/local/bin/weave   
+
+      При проверке версии будет установлен docker образ:
+                  weave version
+                  ...
+                  weaveworks/weaveexec                  2.8.1     e02bec83a27c   3 years ago     71.2MB                
+
+    4. docker тоже можно найти и установить (Уже установлен)
+
+                  sudo apt-get update
+                  sudo apt-get install docker.io
+
+                  sudo usermod -aG docker $USER
+
+                  sudo apt-get install docker-compose
+                  
+                  Перезагрузиться и затем проверить установку,
+                  выполнив команды docker --version и docker-compose --version.
+
+Удостовериться в отсутствии ошибок в конце вывода экрана установки (failed=0).  По документу!!!
+
+                  docker logs -f netra 
+
+    Ожидается  Сообщение «starting done»
+
+На экран будет выдан список всех загруженных docker-контейнеров по команде:
+
+                  docker ps   
+
+Далее:
+    Установка ключей центров сертификации см. по документации                                                  
+
+    Обновление прикладного ПО там же. см. по документации
+
+#----------------------------------------------------------------------------------------------------------
+
+Заход в Brama возможен, если есть доступ к https://brama.znpp.cns, который должен быть установлен в /etc/hosts
+
+    Там сразу надо создать пользователя, наделить правами и тогда можно работать в Brama
